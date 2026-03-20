@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="src/HybridApp.Domain/HybridApp.Domain.csproj" />
+  <Project Path="src/HybridApp.Data/HybridApp.Data.csproj" />
+  <Project Path="src/HybridApp.WebApi/HybridApp.WebApi.csproj" />
+  <Project Path="src/Services/NotificationService/NotificationService.csproj" />
+  <Project Path="src/Services/ReportService/ReportService.csproj" />
+  <Project Path="src/Shared/HybridApp.Contracts/HybridApp.Contracts.csproj" />
+</Solution>
