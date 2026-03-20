@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>CursedApp.Workers</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <!-- References BOTH the core project AND the API project — circular dependency smell -->
+  <ItemGroup>
+    <ProjectReference Include="..\CursedApp\CursedApp.csproj" />
+    <ProjectReference Include="..\CursedApp.Api\CursedApp.Api.csproj" />
+  </ItemGroup>
+
+</Project>

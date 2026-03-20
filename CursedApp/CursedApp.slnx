@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="src\CursedApp\CursedApp.csproj" />
+  <Project Path="src\CursedApp.Api\CursedApp.Api.csproj" />
+  <Project Path="src\CursedApp.Workers\CursedApp.Workers.csproj" />
+  <Project Path="src\Shared\CursedApp.Shared.csproj" />
+  <Project Path="tests\CursedApp.Tests\CursedApp.Tests.csproj" />
+</Solution>

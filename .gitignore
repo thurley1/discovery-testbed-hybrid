@@ -11,9 +11,21 @@ obj/
 ## IDE
 .vs/
 .vscode/
-*.swp
-*~
+*.sln.DotSettings.user
 
 ## OS
 Thumbs.db
+Desktop.ini
 .DS_Store
+
+## Build output
+deploy/
+publish/
+
+## Logs
+*.log
+audit.log
+
+## Uploads
+Uploads/
+Temp/
