@@ -9,6 +9,8 @@
   <ItemGroup>
     <ProjectReference Include="..\HybridApp.Domain\HybridApp.Domain.csproj" />
     <ProjectReference Include="..\HybridApp.Data\HybridApp.Data.csproj" />
+    <ProjectReference Include="..\Services\NotificationService\NotificationService.csproj" />
+    <ProjectReference Include="..\Services\ReportService\ReportService.csproj" />
   </ItemGroup>
 
 </Project>

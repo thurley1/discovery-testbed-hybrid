@@ -2,21 +2,30 @@
 
 **This is a StormBoard topology test fixture, NOT a real application.**
 
-This repository is a deliberately **ambiguous** codebase designed to trigger **low-confidence** topology detection (<50%) in StormBoard's Discovery mode. It has mixed signals from multiple topology types:
+This repository is a deliberately **ambiguous** codebase designed to trigger **low-confidence** topology detection (<50%) in StormBoard's Discovery mode. It has roughly equal monolith and multi-service signals that should confuse the AI detector.
 
 ## Mixed Signals
 
 | Signal | Suggests | Why |
 |--------|----------|-----|
-| Shared `AppDbContext` | Monolith | All entities in one database |
-| `HybridApp.WebApi` with direct DB access | ModularMonolith | Main app with module structure |
-| Two standalone services with `Program.cs` | MonorepoMultiService | Independent deployment entry points |
-| Services reference only Domain, not Data | Microservices | Service isolation |
-| `HybridApp.Contracts` shared interfaces | MonorepoMultiService | Service communication contracts |
+| Shared `AppDbContext` used by ALL projects | **Monolith** | WebApi, NotificationService, and ReportService all query the same DbContext |
+| `SharedEventBus` — in-process pub/sub | **Monolith** | True microservices use message brokers, not in-memory event buses |
+| `ServiceRegistry` — static service lookup | **Monolith** | True microservices use service discovery (Consul, K8s DNS) |
+| WebApi registers all service classes in one DI container | **Monolith** | All code runs in one process |
+| Two standalone services with their own `Program.cs` | **Multi-Service** | Independent deployment entry points |
+| `Services/` directory with separate project structure | **Multi-Service** | Suggests independent deployables |
+| `HybridApp.Contracts` shared interfaces | **Multi-Service** | Service communication contracts |
+| Services reference Domain project | **Multi-Service** | Loose coupling via abstractions |
+
+## Key Ambiguity: Shared Database Coupling
+
+The critical signal is that NotificationService and ReportService both take `AppDbContext` as a constructor dependency and directly query the shared database. This is the strongest monolith indicator — services that share a database aren't truly independent, regardless of their project structure.
+
+At the same time, the services have their own `Program.cs` entry points and live in a `Services/` directory, which structurally looks like independent deployables.
 
 ## Expected Detection
 
-Low confidence (<50%) — could be classified as ModularMonolith or MonorepoMultiService. The AI should be uncertain.
+Low confidence (<50%) — the AI should be genuinely uncertain whether this is a monolith with service-like structure or a multi-service architecture with accidental coupling. Both interpretations are defensible.
 
 ## Purpose
 

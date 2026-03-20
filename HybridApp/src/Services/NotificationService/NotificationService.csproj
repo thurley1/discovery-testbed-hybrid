@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\HybridApp.Domain\HybridApp.Domain.csproj" />
+    <ProjectReference Include="..\..\HybridApp.Data\HybridApp.Data.csproj" />
   </ItemGroup>
 
 </Project>
